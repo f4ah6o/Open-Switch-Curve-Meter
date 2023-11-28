@@ -1,20 +1,14 @@
-# Open-Switch-Curve-Meter
+![Prototype](https://github.com/bluepylons/Open-Switch-Curve-Meter/blob/main/Pics/Prototype-1.jpg?raw=true)
+![Prototype vertical](https://github.com/bluepylons/Open-Switch-Curve-Meter/blob/main/Pics/Prototype-1-vertical.jpg?raw=true)
 
 # About 
+This is an open-source keyboard switch force-curve tester for MX-style switches. Gen 1 is currently operational, and force curves of various switches I've measure are in the Force curve measurements\ directory. Gen 2, which [has a Geekhack IC for a potential future group buy](https://geekhack.org/index.php?topic=115453.0) and is meant to be more user friendly, is currently being prototyped.
 
-これはMXスタイルのスイッチ用のオープンソースキーボードスイッチ力曲線テスターです。Gen 1は現在稼働中で、さまざまなスイッチの力曲線をForce curve measurements\ディレクトリに測定しています。Gen 2は、将来的なグループバイの可能性について[Geekhack ICを持っています](https://geekhack.org/index.php?topic=115453.0)、よりユーザーフレンドリーを目指していますが、現在プロトタイプ製作中です。
+This was designed specifically for MX switches to simplify the design and make everything cheaper and more compact, and since most of the switches I am curious about (as well as almost all new switches released today) use the MX form factor. In theory it could be adapted to test say, Alps or other discrete switches (it would need a different plate and switch holder). This is not as versatile as force-curve testers built around a test stand (like [the one Haata built](https://deskthority.net/viewtopic.php?t=15133)) and can't test arbitrary keyboards like that one, but it's much cheaper to build (I spent about $200 building this, and in theory this is buildable for ~$100 if one foregoes the custom PCB and order the parts from China)
 
-これは、MXスイッチ専用に設計されており、設計を簡素化し、コストとサイズを削減するためです。ほとんどの新しいスイッチもMX形式を採用しているため、これに興味があります。理論的には、Alpsやその他の個別スイッチ（異なるプレートとスイッチホルダーが必要）のテストにも適応可能です。これは、テストスタンドを使用した力曲線テスター（[Haataが作成したもの](https://deskthority.net/viewtopic.php?t=15133)など）ほど万能ではありませんが、はるかに安価に構築可能です（約$200でこのテスターを構築しましたが、カスタムPCBを省略し、中国から部品を調達することで、理論上は約$100で構築可能です）。
+This project is licensed under the CERN OHL-S (strongly reciprocal) license for the hardware designs and the software. This is a share-alike license, and if you modify the project files you are required to also open-source your modifications. 
 
-このプロジェクトは、ハードウェアデザインとソフトウェアについてCERN OHL-S（強力な相互性）ライセンスの下でライセンスされています。これは共有同様ライセンスであり、プロジェクトファイルを変更した場合は、変更をオープンソース化することが求められます。
-
-力曲線グラフ自体 - .ODSスプレッドシートとForce curve measurements\フォルダ内のグラフの.PNG画像 - は、Creative Commons CC-BY 4.0の下でライセンスされています。
-
-## 主要部分
-
-* リニアステージ。[Amazonで55ドルの安価なリニアステージ](https://www.amazon.com/Sliding-Precision-Stepper-T-Shaped-Electric/dp/B07QBCG9YC/ref=sr_1_5?dchild=1&keywords=50mm%2Blinear%2Bstage&qid=1615263982&sr=8-5&th=1)をベースに設計しました。[Aliexpress](https://www.aliexpress.com/item/4001272086575.html?spm=a2g0o.productlist.0.0.61906e9d3wWNyG&algo_pvid=04df7b52-bc18-4d1c-b806-9cd889c3acae&algo_expid=04df7b52-bc18-4d1c-b806-9cd889c3acae-12&btsid=0bb0623916170292735655874e869e&ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_)などで同じようなユニットが見つかります（Aliexpressで購入する場合は、リードスクリューのピッチ（リード）が1mmのモデルを選ぶようにしてください）。第2世代でも同じリニアステージを使用します。
-* ステッピングモーター。ステッピングモーターは2つの目的を果たします - リニアステージを動かすこと、及び位置を追跡して力曲線のX軸をプロットすることです。ステッピングモーターは、ステップが停止またはスキップされない限り、送信されたステップコマンドの数に基づいて特定の量を移動します。これにより、位置を直接測定する必要がなくなります。ステッピングモーターに送信されたステップの数を数えるだけで、ステッピングモーターが特定のステップ数でどのくらい移動するかがわかります。上記のリニアステージに含まれるステッピングモーターを使用しました。これは1ステップあたり1.8°（1回転あたり200ステップ）移動します。リニアステージの1mmリードリードスクリューと組み合わせると、理論的には1ステップ（マイクロステッピングなし）で0.005mm移動します。
-* ステッピングモータードライバー。第1世代ではTrinamic TMC2209を、第2世代では汎用のStepStickスタイルモジュールを使用しました。通信はSTEP/DIR制御を使用して行います。
+The force curve graphs themselves - the .ODS spreadsheets and the .PNG images of the graphs in the Force curve measurements\ folder - are licensed under Creative Commons CC-BY 4.0. 
 
 # The key parts
 * A linear stage. I designed around [this inexpensive $55 linear stage off Amazon](https://www.amazon.com/Sliding-Precision-Stepper-T-Shaped-Electric/dp/B07QBCG9YC/ref=sr_1_5?dchild=1&keywords=50mm%2Blinear%2Bstage&qid=1615263982&sr=8-5&th=1). You can find what appear to be identical units [on Aliexpress](https://www.aliexpress.com/item/4001272086575.html?spm=a2g0o.productlist.0.0.61906e9d3wWNyG&algo_pvid=04df7b52-bc18-4d1c-b806-9cd889c3acae&algo_expid=04df7b52-bc18-4d1c-b806-9cd889c3acae-12&btsid=0bb0623916170292735655874e869e&ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_) and elsewhere for less (if you get them from Aliexpress, make sure you buy the model with 1mm pitch (lead) on the leadscrew). Gen 2 will use the same linear stage. 
