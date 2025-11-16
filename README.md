@@ -1,8 +1,33 @@
 # Open-Switch-Curve-Meter
 
-# About 
+# About
 
 これはMXスタイルのスイッチ用のオープンソースキーボードスイッチ力曲線テスターです。Gen 1は現在稼働中で、さまざまなスイッチの力曲線をForce curve measurements\ディレクトリに測定しています。Gen 2は、将来的なグループバイの可能性について[Geekhack ICを持っています](https://geekhack.org/index.php?topic=115453.0)、よりユーザーフレンドリーを目指していますが、現在プロトタイプ製作中です。
+
+## Marimoバージョンについて
+
+データ処理スクリプトは[marimo](https://marimo.io/)フォーマットに変換されました。Marimoはインタラクティブなリアクティブ型Pythonノートブックです。
+
+### インストール方法
+
+```bash
+pip install -r requirements.txt
+```
+
+### 使用方法
+
+```bash
+# Marimoアプリを実行
+marimo edit "Gen 1 Design/Processing-Python-script/processing_script.py"
+```
+
+または、単独で実行する場合：
+
+```bash
+marimo run "Gen 1 Design/Processing-Python-script/processing_script.py"
+```
+
+スクリプト内の`input_file`と`output_file`のパスを適切に設定してください。
 
 これは、MXスイッチ専用に設計されており、設計を簡素化し、コストとサイズを削減するためです。ほとんどの新しいスイッチもMX形式を採用しているため、これに興味があります。理論的には、Alpsやその他の個別スイッチ（異なるプレートとスイッチホルダーが必要）のテストにも適応可能です。これは、テストスタンドを使用した力曲線テスター（[Haataが作成したもの](https://deskthority.net/viewtopic.php?t=15133)など）ほど万能ではありませんが、はるかに安価に構築可能です（約$200でこのテスターを構築しましたが、カスタムPCBを省略し、中国から部品を調達することで、理論上は約$100で構築可能です）。
 
