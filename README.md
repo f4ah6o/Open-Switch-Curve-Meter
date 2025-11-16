@@ -10,11 +10,40 @@
 
 ### インストール方法
 
+#### uv（推奨）
+
+[uv](https://docs.astral.sh/uv/)は高速なPythonパッケージマネージャーです。
+
+```bash
+# uvのインストール（まだの場合）
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# 依存関係のインストール
+uv sync
+```
+
+#### pip
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 使用方法
+
+#### uvを使用する場合
+
+```bash
+# Marimoアプリを実行
+uv run marimo edit "Gen 1 Design/Processing-Python-script/processing_script.py"
+```
+
+または、単独で実行する場合：
+
+```bash
+uv run marimo run "Gen 1 Design/Processing-Python-script/processing_script.py"
+```
+
+#### pipを使用する場合
 
 ```bash
 # Marimoアプリを実行
